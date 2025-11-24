@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peta Sebaran Balita & PAUD</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom styling */
+    body {
+      scroll-behavior: smooth;
+    }
+    #hero {
+      height: 100vh;
+      background: url('https://source.unsplash.com/1600x900/?education,children') center/cover no-repeat;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+    #hero h1 {
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">PAUD Map</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#hero">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#map">Peta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">Tentang</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#data">Data</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="text-center text-white d-flex justify-content-center align-items-center">
+    <div class="container">
+      <h1 class="display-4 fw-bold">Peta Sebaran Balita & PAUD di Jepara</h1>
+      <p class="lead mt-3">Visualisasi interaktif untuk memudahkan perencanaan dan pemantauan.</p>
+      <a href="#map" class="btn btn-lg btn-light mt-3">Lihat Peta</a>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section id="map" class="d-flex align-items-center py-5" style="min-height:100vh;">
+    <div class="container">
+      <h2 class="fw-bold mb-3 text-center">Peta Sebaran</h2>
+      <p class="text-center mb-4">Visualisasi persebaran balita dan fasilitas PAUD di Kecamatan Jepara.</p>
+
+      <div class="ratio ratio-16x9 shadow rounded overflow-hidden">
+        <iframe src="./qgis2web_2025_11_19-03_59_43_411000/index.html" style="border:0;"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-12 bg-light">
+    <div class="container">
+      <h2 class="fw-bold mb-4 text-center">Tentang</h2>
+      <p class="text-center">Website ini dibuat sebagai media informasi spasial mengenai sebaran jumlah balita dan lembaga PAUD di Kecamatan Jepara. Selama ini, data terkait balita dan fasilitas PAUD umumnya tersedia dalam bentuk tabel atau rekap statistik sehingga kurang mudah dianalisis secara visual.
+
+Melalui pemanfaatan Sistem Informasi Geografis (SIG) dengan QGIS, website ini menyajikan peta tematik yang menampilkan persebaran jumlah balita serta ketersediaan lembaga PAUD di setiap desa/kelurahan. Visualisasi ini membantu pengguna memahami kondisi pemerataan pendidikan anak usia dini secara lebih cepat, jelas, dan interaktif.
+
+Website ini diharapkan dapat mendukung pemerintah, pendidik, peneliti, dan masyarakat dalam melakukan analisis, evaluasi, serta perencanaan pembangunan sektor pendidikan anak usia dini di Kecamatan Jepara.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+<section id="data" class="py-6">
+  <div class="container">
+    <h2 class="fw-bold mb-4 text-center">Pengumpulan Data</h2>
+
+    <!-- Point 1 -->
+    <div class="card shadow p-4 mb-4">
+      <div class="row align-items-center">
+
+        <div class="col-md-7">
+          <h5 class="fw-bold">1. Data Jumlah Balita</h5>
+          <p class="mb-0">
+            Data jumlah balita diperoleh dari 
+            <strong>publikasi Kecamatan Jepara Dalam Angka 2024</strong> 
+            yang diterbitkan oleh <strong>BPS Kabupaten Jepara</strong>. 
+            Publikasi ini berisi data statistik sosial, ekonomi, dan kependudukan tahun 2023.
+          </p>
+        </div>
+
+        <div class="col-md-5 text-center mt-3 mt-md-0">
+          <img 
+            src="foto/image.png" 
+            alt="Foto 1" 
+            class="img-fluid rounded shadow-sm zoom-image"
+            data-bs-toggle="modal" 
+            data-bs-target="#modalFoto1"
+          >
+          <p class="mt-2 fw-semibold">
+            Sumber: <a href="https://www.bps.go.id" target="_blank">BPS Kabupaten Jepara</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Point 2 -->
+    <div class="card shadow p-4">
+      <div class="row align-items-center">
+
+        <div class="col-md-7">
+          <h5 class="fw-bold">2. Data Jumlah Sekolah PAUD</h5>
+          <p>
+            Data jumlah sekolah PAUD per desa/kelurahan diperoleh dari situs 
+            <strong>datapendidikan.com/paud/kab/jepara</strong>.
+          </p>
+          <p class="mb-1">Data ini mencakup:</p>
+          <ul>
+            <li>Nama lembaga PAUD</li>
+            <li>Lokasi desa/kelurahan tempat PAUD berada</li>
+            <li>Jenis lembaga (TK, KB, SPS)</li>
+            <li>Status lembaga (negeri/swasta)</li>
+          </ul>
+        </div>
+
+        <div class="col-md-5 text-center mt-3 mt-md-0">
+          <img 
+            src="foto/excel.png" 
+            alt="Foto 2" 
+            class="img-fluid rounded shadow-sm zoom-image"
+            data-bs-toggle="modal" 
+            data-bs-target="#modalFoto2"
+          >
+          <p class="mt-2 fw-semibold">
+            Sumber: <a href="https://datapendidikan.com/paud/kab/jepara" target="_blank">datapendidikan.com</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Modal Foto 1 -->
+<div class="modal fade" id="modalFoto1" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <img src="foto/image.png" class="img-fluid rounded">
+    </div>
+  </div>
+</div>
+
+<!-- Modal Foto 2 -->
+<div class="modal fade" id="modalFoto2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <img src="foto/excel.png" class="img-fluid rounded">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white text-center py-3">
+    &copy; 2025 PAUD Map Jepara. All rights reserved.
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
