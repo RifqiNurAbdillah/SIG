@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/qgis2web.css">
+
+    <!-- Tambahkan Google Fonts (misalnya: Roboto) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif; 
+    overflow-x: hidden;
+}
+
+/* === SIDEBAR === */
+#sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100%;
+    background: white;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: auto;
+    z-index: 9999;
+    font-family: 'Roboto', sans-serif; 
+}
+
+/* === Map Styles === */
+#map {
+    margin-left: 260px;  /* Posisi peta agar tidak tertutup sidebar */
+    height: 100%;
+    transition: margin-left 0.5s ease; /* Animasi untuk transisi sidebar */
+}
+
+/* Responsif: Menempatkan sidebar di atas peta pada layar kecil */
+@media (max-width: 768px) {
+    #sidebar {
+        position: relative;
+        width: 100%;
+        height: 250px;  /* Membatasi tinggi sidebar */
+        border-right: none;
+        margin-bottom: 10px;
+    }
+
+    /* Menyesuaikan peta supaya tidak tertutup oleh sidebar */
+    #map {
+        margin-left: 0;
+        height: calc(100% - 250px); /* Mengurangi tinggi peta untuk memberi ruang bagi sidebar di atas */
+    }
+}
+
+
+/* Sidebar Title Styling */
+.sidebar-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif; 
+}
+
+.sidebar-item {
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 4px;
+    font-family: 'Roboto', sans-serif; 
+}
+
+.sidebar-item:hover {
+    background: #eaeaea;
+}
+
+hr {
+    margin: 10px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+/* === DROP-DOWN STYLES === */
+details > summary {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 6px 0;
+    list-style: none;
+    font-family: 'Roboto', sans-serif; 
+}
+details[open] > summary:after {
+    content: "▼";
+    float: right;
+}
+details:not([open]) > summary:after {
+    content: "►";
+    float: right;
+}
+
+    </style>
+
+    <title>Peta PAUD & Kecamatan</title>
+</head>
+
+<body>
+
+<!-- Sidebar tanpa data ditampilkan awal -->
+<div id="sidebar">
+
+    <details>
+        <summary class="sidebar-title">Filter Rasio PAUD</summary>
+        <div id="filterRatio"></div>
+    </details>
+
+    <details>
+        <summary class="sidebar-title">Daftar Kecamatan</summary>
+        <div id="sideListKecamatan"></div>
+    </details>
+
+    <details>
+        <summary class="sidebar-title">Daftar PAUD</summary>
+        <div id="sideListPAUD"></div>
+    </details>
+
+</div>
+
+<div id="map"></div>
+
+<!-- === SCRIPT DEPENDENCIES === -->
+<script src="js/qgis2web_expressions.js"></script>
+<script src="js/leaflet.js"></script>
+<script src="js/leaflet.rotatedMarker.js"></script>
+<script src="js/leaflet.pattern.js"></script>
+<script src="js/leaflet-hash.js"></script>
+<script src="js/Autolinker.min.js"></script>
+<script src="js/rbush.min.js"></script>
+<script src="js/labelgun.min.js"></script>
+<script src="js/labels.js"></script>
+
+<script src="data/LapakGIS_Batas_Kelurahan_Desa_2024_1.js"></script>
+<script src="data/kecjepara_2.js"></script>
+<script src="data/paudnew1_3.js"></script>
+
+<script>
+// ================== MAP INIT ==================
+var map = L.map('map', {
+    center: [-6.58, 110.68], 
+    zoom: 14,
+    zoomControl: true, 
+    maxZoom: 17,   // Zoom maksimal yang dapat dicapai
+    minZoom: 13    // Membatasi zoom out hingga level 10 (atau nilai yang kamu inginkan)
+});
+
+map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+
+var overlay_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    opacity: 1.0
+});
+overlay_OSMStandard_0.addTo(map);
+
+
+// ================== LAYERS ==================
+
+// LapakGIS Desa
+function pop_LapakGIS_Batas_Kelurahan_Desa_2024_1(feature, layer) {
+    var popupContent = '<table>\
+        <tr><td colspan="2">' + (feature.properties['OBJECTID'] || '') + '</td></tr>\
+        <tr><td colspan="2">' + (feature.properties['NAMOBJ'] || '') + '</td></tr>\
+    </table>';
+    layer.bindPopup(popupContent, {maxHeight: 400});
+}
+function style_LapakGIS_Batas_Kelurahan_Desa_2024_1_0() {
+    return {pane: 'pane_LapakGIS_Batas_Kelurahan_Desa_2024_1', opacity: 1, color: 'rgba(0,0,0,0.0)', weight: 1, fillOpacity: 0};
+}
+map.createPane('pane_LapakGIS_Batas_Kelurahan_Desa_2024_1'); 
+map.getPane('pane_LapakGIS_Batas_Kelurahan_Desa_2024_1').style.zIndex = 401;
+var layer_LapakGIS_Batas_Kelurahan_Desa_2024_1 = new L.geoJson(json_LapakGIS_Batas_Kelurahan_Desa_2024_1, {
+    pane: 'pane_LapakGIS_Batas_Kelurahan_Desa_2024_1',
+    onEachFeature: pop_LapakGIS_Batas_Kelurahan_Desa_2024_1,
+    style: style_LapakGIS_Batas_Kelurahan_Desa_2024_1_0,
+}).addTo(map);
+
+// Kecamatan
+function pop_kecjepara_2(feature, layer) {
+    var popupContent = '<table>\
+        <tr><td>' + (feature.properties['NAMOBJ'] || '') + '</td></tr>\
+        <tr><td>PAUD: ' + (feature.properties['Paud'] || '') + '</td></tr>\
+        <tr><td>Balita: ' + (feature.properties['Balita'] || '') + '</td></tr>\
+        <tr><td>Rasio: ' + (feature.properties['ratio_paud'] || '') + '</td></tr>\
+    </table>';
+    layer.bindPopup(popupContent, {maxHeight: 400});
+}
+function style_kecjepara_2_0(feature) {
+    var v = feature.properties['ratio_paud'];
+    if (v >= 41 && v <= 72.4) return {pane:'pane_kecjepara_2', fillColor:'rgba(247,251,255,0.82)', weight:1, color:'#000', fillOpacity:1};
+    if (v <= 103.8) return {pane:'pane_kecjepara_2', fillColor:'rgba(200,221,240,0.82)', weight:1, color:'#000', fillOpacity:1};
+    if (v <= 135.2) return {pane:'pane_kecjepara_2', fillColor:'rgba(115,179,216,0.82)', weight:1, color:'#000', fillOpacity:1};
+    if (v <= 166.6) return {pane:'pane_kecjepara_2', fillColor:'rgba(40,121,185,0.82)', weight:1, color:'#000', fillOpacity:1};
+    return {pane:'pane_kecjepara_2', fillColor:'rgba(8,48,107,0.82)', weight:1, color:'#000', fillOpacity:1};
+}
+map.createPane('pane_kecjepara_2'); 
+map.getPane('pane_kecjepara_2').style.zIndex = 402;
+var layer_kecjepara_2 = new L.geoJson(json_kecjepara_2, {
+    pane: 'pane_kecjepara_2',
+    onEachFeature: pop_kecjepara_2,
+    style: style_kecjepara_2_0,
+}).addTo(map);
+
+// PAUD
+function pop_paudnew1_3(feature, layer) {
+    var popupContent = '<table>\
+        <tr><td>' + (feature.properties['Nama'] || '') + '</td></tr>\
+        <tr><td>' + (feature.properties['Alamat'] || '') + '</td></tr>\
+    </table>';
+    layer.bindPopup(popupContent, {maxHeight: 400});
+}
+function style_paudnew1_3_0() {
+    return {pane: 'pane_paudnew1_3', radius: 4, color: 'black', weight: 1, fillColor: 'red', fillOpacity: 1};
+}
+map.createPane('pane_paudnew1_3');
+map.getPane('pane_paudnew1_3').style.zIndex = 403;
+var layer_paudnew1_3 = new L.geoJson(json_paudnew1_3, {
+    pane: 'pane_paudnew1_3',
+    onEachFeature: pop_paudnew1_3,
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, style_paudnew1_3_0());
+    }
+}).addTo(map);
+
+// ================== SIDEBAR LIST ==================
+
+// Filter Rasio PAUD
+var filterRatioDiv = document.getElementById("filterRatio");
+var rasioList = [
+    {label: "1 : 57", min:41.0, max:72.4},
+    {label: "1 : 88", min:72.4, max:103.8},
+    {label: "1 : 120", min:103.8, max:135.2},
+    {label: "1 : 151", min:135.2, max:166.6},
+    {label: "1 : 183", min:166.6, max:198.0},
+    {label: "All", min:-Infinity, max:Infinity}
+];
+rasioList.forEach(function(r) {
+    var btn = document.createElement("div");
+    btn.className = "sidebar-item";
+    btn.innerHTML = r.label;
+    btn.style.fontWeight = "bold";
+    btn.onclick = function() {
+        layer_kecjepara_2.eachLayer(function(l) {
+            var v = l.feature.properties['ratio_paud'];
+            if (v >= r.min && v <= r.max) {
+                l.setStyle(style_kecjepara_2_0(l.feature));
+            } else {
+                l.setStyle({ fillOpacity:0.3, color:'#ccc', weight:1});
+            }
+        });
+    };
+    filterRatioDiv.appendChild(btn);
+});
+
+// Daftar Kecamatan
+var sideListKecamatan = document.getElementById("sideListKecamatan");
+json_kecjepara_2.features.forEach(function(f) {
+    var nama = f.properties["NAMOBJ"];
+    var ratio = f.properties["ratio_paud"];
+    var paud = f.properties["Paud"];
+    var div = document.createElement("div");
+    div.className = "sidebar-item";
+    div.innerHTML = `<b>${nama}</b>`;
+    div.onclick = function() {
+        layer_kecjepara_2.eachLayer(function(l) {
+            if (l.feature.properties.NAMOBJ === nama) {
+                map.fitBounds(l.getBounds());
+                l.openPopup();
+            }
+        });
+    };
+    sideListKecamatan.appendChild(div);
+});
+
+// Daftar PAUD
+var sideListPAUD = document.getElementById("sideListPAUD");
+json_paudnew1_3.features.forEach(function(f) {
+    var nama = f.properties["Nama"];
+    var alamat = f.properties["Alamat"];
+    var div = document.createElement("div");
+    div.className = "sidebar-item";
+    div.innerHTML = `<b>${nama}</b><br><small>${alamat}</small>`;
+    div.onclick = function() {
+        layer_paudnew1_3.eachLayer(function(l) {
+            if (l.feature.properties.Nama === nama) {
+                map.setView(l.getLatLng(), 17);
+                l.openPopup();
+            }
+        });
+    };
+    sideListPAUD.appendChild(div);
+});
+
+// Fungsi untuk menyesuaikan tinggi peta
+function adjustMapSize() {
+    var sidebarHeight = window.innerWidth <= 768 ? 250 : 0; // Menentukan tinggi sidebar di mobile
+    var mapHeight = window.innerHeight - sidebarHeight;  // Menghitung tinggi peta
+    document.getElementById('map').style.height = mapHeight + 'px'; // Mengatur tinggi peta
+}
+
+// Memanggil fungsi adjustMapSize saat halaman dimuat dan saat ukuran jendela berubah
+window.addEventListener('load', adjustMapSize);
+window.addEventListener('resize', adjustMapSize);
+
+</script>
+</body>
+</html>

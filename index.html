@@ -1,99 +1,195 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Peta Sebaran Balita & PAUD</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    /* Custom styling */
-    body {
-      scroll-behavior: smooth;
-    }
-    #hero {
-      height: 100vh;
-      background: url('https://source.unsplash.com/1600x900/?education,children') center/cover no-repeat;
-      color: white;
-      display: flex;
-      align-items: center;
-    }
-    #hero h1 {
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-    }
-    iframe {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
+    <meta charset="utf-8">
+    <title>iSTUDIO - Interior Design Website Template Free</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Space+Grotesk&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
 </head>
+
 <body>
-
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="#">PAUD Map</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="#hero">Beranda</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#map">Peta</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#about">Tentang</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#data">Data</a>
-          </li>
-        </ul>
-      </div>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
     </div>
-  </nav>
+    <!-- Spinner End -->
 
-  <!-- Hero Section -->
-  <section id="hero" class="text-center text-white d-flex justify-content-center align-items-center">
-    <div class="container">
-      <h1 class="display-4 fw-bold">Peta Sebaran Balita & PAUD di Jepara</h1>
-      <p class="lead mt-3">Visualisasi interaktif untuk memudahkan perencanaan dan pemantauan.</p>
-      <a href="#map" class="btn btn-lg btn-light mt-3">Lihat Peta</a>
+
+    <!-- Navbar Start -->
+    <div class="container-fluid sticky-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2 border-white">
+                <a href="index.html" class="navbar-brand">
+                    <h1>SIG PAUD</h1>
+                </a>
+                <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        <a href="#about" class="nav-item nav-link">About</a>
+                        <a href="service.html" class="nav-item nav-link">Interactive Map</a>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
     </div>
-  </section>
+    <!-- Navbar End -->
 
-  <!-- Map Section -->
-  <section id="map" class="d-flex align-items-center py-5" style="min-height:100vh;">
-    <div class="container">
-      <h2 class="fw-bold mb-3 text-center">Peta Sebaran</h2>
-      <p class="text-center mb-4">Visualisasi persebaran balita dan fasilitas PAUD di Kecamatan Jepara.</p>
 
-      <div class="ratio ratio-16x9 shadow rounded overflow-hidden">
-        <iframe src="./qgis2web_2025_11_19-03_59_43_411000/index.html" style="border:0;"></iframe>
-      </div>
+    <!-- Hero Start -->
+    <div class="container-fluid pb-5 hero-header bg-light mb-5">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center mb-5">
+                <div class="col-lg-6">
+                    <h1 class="custom-title mb-4 animated slideInRight">
+                        Pemetaan Sebaran <span class="text-primary">Balita</span> dan Ketersediaan Sekolah 
+                        <span class="text-primary">PAUD</span> di Kecamatan Jepara
+                    </h1>
+                    <a href="" class="custom-subtitle d-inline-block border border-2 border-white py-3 px-5 mb-0 animated slideInRight">
+                        Lihat Peta
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="owl-carousel header-carousel animated fadeIn">
+                        <img class="img-fluid" src="img/paud3.jpg" alt="">
+                        <img class="img-fluid" src="img/paud2.jpg" alt="">
+                        <img class="img-fluid" src="img/paud.jpeg" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </section>
+    <!-- Hero End -->
 
-  <!-- About Section -->
-  <section id="about" class="py-12 bg-light">
-    <div class="container">
-      <h2 class="fw-bold mb-4 text-center">Tentang</h2>
-      <p class="text-center">Website ini dibuat sebagai media informasi spasial mengenai sebaran jumlah balita dan lembaga PAUD di Kecamatan Jepara. Selama ini, data terkait balita dan fasilitas PAUD umumnya tersedia dalam bentuk tabel atau rekap statistik sehingga kurang mudah dianalisis secara visual.
 
-Melalui pemanfaatan Sistem Informasi Geografis (SIG) dengan QGIS, website ini menyajikan peta tematik yang menampilkan persebaran jumlah balita serta ketersediaan lembaga PAUD di setiap desa/kelurahan. Visualisasi ini membantu pengguna memahami kondisi pemerataan pendidikan anak usia dini secara lebih cepat, jelas, dan interaktif.
+    <!-- About Start -->
+    <div id="about" class="about container-fluid py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-6 wow fadeIn" data-wow-delay="0.1s">
+                            <img class="img-fluid" src="img/about-1.jpg" alt="">
+                        </div>
+                        <div class="col-6 wow fadeIn" data-wow-delay="0.3s">
+                            <img class="img-fluid h-75" src="img/about-2.jpg" alt="">
+                            <div class="h-25 d-flex align-items-center text-center bg-primary px-4">
+                                <h4 class="text-white lh-base mb-0">Award Winning Studio Since 1990</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                    <h1 class="mb-5"><span class="text-uppercase text-primary bg-light px-2">Tentang</span> Website</h1>
+                    <p class="mb-4">Website ini dibuat sebagai media informasi spasial mengenai sebaran jumlah balita dan lembaga PAUD di Kecamatan Jepara. Selama ini, data terkait balita dan fasilitas PAUD umumnya tersedia dalam bentuk tabel atau rekap statistik sehingga kurang mudah dianalisis secara visual.
+        Melalui pemanfaatan Sistem Informasi Geografis (SIG) dengan QGIS, website ini menyajikan peta tematik yang menampilkan persebaran jumlah balita serta ketersediaan lembaga PAUD di setiap desa/kelurahan. </p>
+                    <p class="mb-5">Visualisasi ini membantu pengguna memahami kondisi pemerataan pendidikan anak usia dini secara lebih cepat, jelas, dan interaktif.
 
-Website ini diharapkan dapat mendukung pemerintah, pendidik, peneliti, dan masyarakat dalam melakukan analisis, evaluasi, serta perencanaan pembangunan sektor pendidikan anak usia dini di Kecamatan Jepara.</p>
+Website ini diharapkan dapat mendukung pemerintah, pendidik, peneliti, dan masyarakat dalam melakukan analisis, evaluasi, serta perencanaan pembangunan sektor pendidikan anak usia dini di Kecamatan Jepara.</p></p>
+   
+                    <div class="d-flex align-items-center mt-5">
+                        <a class="btn btn-primary px-4 me-2" href="">Read More</a>
+                        <a class="btn btn-outline-primary btn-square border-2 me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-primary btn-square border-2 me-2" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-primary btn-square border-2 me-2" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-outline-primary btn-square border-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
+    <!-- About End -->
 
-  <!-- Contact Section -->
+
+    <!-- Feature Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center wow fadeIn" data-wow-delay="0.1s">
+                <h1 class="mb-5"><span class="text-uppercase text-primary bg-light px-2">Fitur</span> Website</h1>
+            </div>
+            <div class="row g-5 align-items-center text-center">
+
+                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                    <i class="fa fa-map fa-5x text-primary mb-4"></i>
+                    <h4>Peta Interaktif</h4>
+                    <p class="mb-0">Menampilkan peta interaktif berbasis Leaflet dengan zoom dan navigasi mudah untuk semua pengguna.</p>
+                </div>
+
+                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                    <i class="fa fa-list fa-5x text-primary mb-4"></i>
+                    <h4>Sidebar Navigasi</h4>
+                    <p class="mb-0">Sidebar menampilkan daftar kecamatan, PAUD, dan filter rasio balita per PAUD untuk navigasi cepat.</p>
+                </div>
+
+                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                    <i class="fa fa-filter fa-5x text-primary mb-4"></i>
+                    <h4>Filter Rasio PAUD</h4>
+                    <p class="mb-0">Filter interaktif menyoroti kecamatan berdasarkan rasio balita per PAUD agar fokus analisis lebih jelas.</p>
+                </div>
+
+                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                    <i class="fa fa-building fa-5x text-primary mb-4"></i>
+                    <h4>Popup Informasi</h4>
+                    <p class="mb-0">Klik kecamatan atau PAUD untuk menampilkan popup detail seperti nama, alamat, jumlah balita, dan rasio PAUD.</p>
+                </div>
+
+                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                    <i class="fa fa-layer-group fa-5x text-primary mb-4"></i>
+                    <h4>Layer Multi-Pane</h4>
+                    <p class="mb-0">Setiap jenis data (Desa, Kecamatan, PAUD) memiliki layer terpisah agar tampilan lebih rapi dan bisa diatur z-index-nya.</p>
+                </div>
+
+                <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                    <i class="fa fa-mobile-alt fa-5x text-primary mb-4"></i>
+                    <h4>Responsif & Mobile Friendly</h4>
+                    <p class="mb-0">Peta dan sidebar menyesuaikan layar, sehingga nyaman diakses dari desktop maupun perangkat mobile.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Feature End -->
+
+<!-- Feature End -->
+
+<!-- Contact Section -->
 <section id="data" class="py-6">
   <div class="container">
-    <h2 class="fw-bold mb-4 text-center">Pengumpulan Data</h2>
+            <div class="text-center wow fadeIn" data-wow-delay="0.1s">
+            <h1 class="mb-5">Pengumpulan <span class="text-uppercase text-primary bg-light px-2">data</span></h1>
+        </div>
 
     <!-- Point 1 -->
     <div class="card shadow p-4 mb-4">
@@ -111,14 +207,14 @@ Website ini diharapkan dapat mendukung pemerintah, pendidik, peneliti, dan masya
 
         <div class="col-md-5 text-center mt-3 mt-md-0">
           <img 
-            src="foto/image.png" 
+            src="img/image.png" 
             alt="Foto 1" 
             class="img-fluid rounded shadow-sm zoom-image"
             data-bs-toggle="modal" 
             data-bs-target="#modalFoto1"
           >
           <p class="mt-2 fw-semibold">
-            Sumber: <a href="https://www.bps.go.id" target="_blank">BPS Kabupaten Jepara</a>
+            Sumber: <a href="https://jeparakab.bps.go.id/id/publication/2024/09/26/14ef0d31a6b2454339a51353/kecamatan-jepara-dalam-angka-2024.html" target="_blank">BPS Kabupaten Jepara</a>
           </p>
         </div>
 
@@ -146,7 +242,7 @@ Website ini diharapkan dapat mendukung pemerintah, pendidik, peneliti, dan masya
 
         <div class="col-md-5 text-center mt-3 mt-md-0">
           <img 
-            src="foto/excel.png" 
+            src="img/excel.png" 
             alt="Foto 2" 
             class="img-fluid rounded shadow-sm zoom-image"
             data-bs-toggle="modal" 
@@ -167,7 +263,7 @@ Website ini diharapkan dapat mendukung pemerintah, pendidik, peneliti, dan masya
 <div class="modal fade" id="modalFoto1" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <img src="foto/image.png" class="img-fluid rounded">
+      <img src="img/image.png" class="img-fluid rounded">
     </div>
   </div>
 </div>
@@ -176,21 +272,97 @@ Website ini diharapkan dapat mendukung pemerintah, pendidik, peneliti, dan masya
 <div class="modal fade" id="modalFoto2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <img src="foto/excel.png" class="img-fluid rounded">
+      <img src="img/excel.png" class="img-fluid rounded">
     </div>
   </div>
 </div>
 
 
 
+<!-- Testimonial Start -->
 
 
-  <!-- Footer -->
-  <footer class="bg-primary text-white text-center py-3">
-    &copy; 2025 PAUD Map Jepara. All rights reserved.
-  </footer>
+    <!-- Testimonial Start -->
+    <div class="container-xxl py-5">
+    
+    </div>
+    <!-- Testimonial End -->
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 footer pt-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+                    <a href="index.html" class="d-inline-block mb-3">
+                        <h1 class="text-white">SIG PAUD</h1>
+                    </a>
+                    <p class="mb-4">Sistem Informasi Geografis Peta Sebaran Balita & PAUD di Kecamatan Jepara.</p>
+                </div>
+                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
+                    <h5 class="text-white mb-4">Get In Touch</h5>
+                    <p><i class="fa fa-map-marker-alt me-3"></i>Kaliombo, Pecangaan, Jepara</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>+62 857 1314 3209</p>
+                    <p><i class="fa fa-envelope me-3"></i>rifqiabdillahnur@gmail.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-primary btn-square border-2 me-2" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-primary btn-square border-2 me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-primary btn-square border-2 me-2" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-primary btn-square border-2 me-2" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-outline-primary btn-square border-2 me-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
+                    <h5 class="text-white mb-4">Popular Link</h5>
+                    <a class="btn btn-link" href="#about">About</a>
+                    <a class="btn btn-link" href="service.html">MAPS</a>
+                    <a class="btn btn-link" href="contact.html">Contact Us</a>
+                </div>
+                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
+                    <h5 class="text-white mb-4">Source</h5>
+                    <a class="btn btn-link" target="_blank" href="https://jeparakab.bps.go.id/id/publication/2024/09/26/14ef0d31a6b2454339a51353/kecamatan-jepara-dalam-angka-2024.html">BPS Kabupaten Jepara</a>
+                    <a class="btn btn-link" target="_blank" href="https://datapendidikan.com/paud/kab/jepara">datapendidikan</a>
+                </div>
+            </div>
+        </div>
+        <div class="container wow fadeIn" data-wow-delay="0.1s">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+
+                        <!--/*** The author’s attribution link must remain intact in the template. ***/-->
+                        <!--/*** If you wish to remove this credit link, please purchase the Pro Version . ***/-->
+                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <div class="footer-menu">
+                            <a href="">Home</a>
+                            <a href="">Cookies</a>
+                            <a href="">Help</a>
+                            <a href="">FAQs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
 </body>
+
 </html>
