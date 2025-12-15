@@ -240,30 +240,45 @@ var layer_paudnew1_3 = new L.geoJson(json_paudnew1_3, {
 // Filter Rasio PAUD
 var filterRatioDiv = document.getElementById("filterRatio");
 var rasioList = [
-    {label: "1 : 57", min:41.0, max:72.4},
-    {label: "1 : 88", min:72.4, max:103.8},
-    {label: "1 : 120", min:103.8, max:135.2},
-    {label: "1 : 151", min:135.2, max:166.6},
-    {label: "1 : 183", min:166.6, max:198.0},
-    {label: "All", min:-Infinity, max:Infinity}
+    {label: "1 : 57",  min:41.0,  max:72.4,  color:'rgba(247,251,255,0.82)'},
+    {label: "1 : 88",  min:72.4,  max:103.8, color:'rgba(200,221,240,0.82)'},
+    {label: "1 : 120", min:103.8, max:135.2, color:'rgba(115,179,216,0.82)'},
+    {label: "1 : 151", min:135.2, max:166.6, color:'rgba(40,121,185,0.82)'},
+    {label: "1 : 183", min:166.6, max:198.0, color:'rgba(8,48,107,0.82)'},
+    {label: "All", min:-Infinity, max:Infinity, color:'#ffffff'}
 ];
+
 rasioList.forEach(function(r) {
     var btn = document.createElement("div");
     btn.className = "sidebar-item";
-    btn.innerHTML = r.label;
-    btn.style.fontWeight = "bold";
+
+    btn.innerHTML = `
+        <span style="
+            display:inline-block;
+            width:14px;
+            height:14px;
+            background:${r.color};
+            border:1px solid #333;
+            margin-right:6px;
+            vertical-align:middle;
+        "></span>
+        ${r.label}
+    `;
+
     btn.onclick = function() {
         layer_kecjepara_2.eachLayer(function(l) {
             var v = l.feature.properties['ratio_paud'];
             if (v >= r.min && v <= r.max) {
                 l.setStyle(style_kecjepara_2_0(l.feature));
             } else {
-                l.setStyle({ fillOpacity:0.3, color:'#ccc', weight:1});
+                l.setStyle({ fillOpacity:0.2, color:'#ccc', weight:1});
             }
         });
     };
+
     filterRatioDiv.appendChild(btn);
 });
+
 
 // Daftar Kecamatan
 var sideListKecamatan = document.getElementById("sideListKecamatan");
@@ -273,7 +288,7 @@ json_kecjepara_2.features.forEach(function(f) {
     var paud = f.properties["Paud"];
     var div = document.createElement("div");
     div.className = "sidebar-item";
-    div.innerHTML = `<b>${nama}</b>`;
+    div.innerHTML = `${nama}`;
     div.onclick = function() {
         layer_kecjepara_2.eachLayer(function(l) {
             if (l.feature.properties.NAMOBJ === nama) {
